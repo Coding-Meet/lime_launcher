@@ -27,7 +27,7 @@ import app.pinya.lime.domain.model.menus.NotificationAccessMenu
 import app.pinya.lime.domain.usecase.RefreshAppList
 import app.pinya.lime.ui.utils.IconPackManager
 import app.pinya.lime.ui.utils.Utils
-import app.pinya.lime.ui.utils.billing.BillingHelper
+//import app.pinya.lime.ui.utils.billing.BillingHelper
 import app.pinya.lime.ui.view.adapter.BuyProMenuAdapter
 import app.pinya.lime.ui.view.adapter.LockScreenMenuAdapter
 import app.pinya.lime.ui.view.adapter.NotificationAccessMenuAdapter
@@ -61,9 +61,9 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
-        private val billingHelper by lazy {
-            (requireActivity().application as LimeLauncherApp).appContainer.billingHelper
-        }
+//        private val billingHelper by lazy {
+//            (requireActivity().application as LimeLauncherApp).appContainer.billingHelper
+//        }
 
         private lateinit var lockScreenMenuAdapter: LockScreenMenuAdapter
         private lateinit var buyProMenuAdapter: BuyProMenuAdapter
@@ -101,7 +101,7 @@ class SettingsActivity : AppCompatActivity() {
 
         private fun handleBuyProClick() {
             setBuyProMenu(null)
-            billingHelper.startBillingFlow(requireActivity())
+//            billingHelper.startBillingFlow(requireActivity())
         }
 
         private fun setNotificationAccessMenu(newNotificationAccessMenu: NotificationAccessMenu?) {
@@ -132,7 +132,7 @@ class SettingsActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val appList = RefreshAppList(AppRepo()).invoke()
 
-                setRateAppSettings()
+//                setRateAppSettings()
 
                 setGeneralSettings()
 
@@ -148,10 +148,10 @@ class SettingsActivity : AppCompatActivity() {
 
                 setNotificationBadgesSettings()
             }
-
-            billingHelper.purchaseState.observe(this) { purchaseState ->
-                setIsPro(purchaseState == BillingHelper.ProPurchaseState.PURCHASED_AND_ACKNOWLEDGED)
-            }
+            setIsPro(true)
+//            billingHelper.purchaseState.observe(this) { purchaseState ->
+//                setIsPro(purchaseState == BillingHelper.ProPurchaseState.PURCHASED_AND_ACKNOWLEDGED)
+//            }
         }
 
         override fun onResume() {
